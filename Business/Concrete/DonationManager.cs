@@ -23,7 +23,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(DonationValidator))]
-        [SecuredOperation("donation.add,admin")]
+        [SecuredOperation("donation.add,admin,user")]
         [CacheRemoveAspect("IDonationService.Get")]
         public IResult Add(Donation donation)
         {
@@ -31,7 +31,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.DonationAdded);
         }
 
-        [SecuredOperation("donation.delete,admin")]
+        [SecuredOperation("donation.delete,admin,user")]
         [CacheRemoveAspect("IDonationService.Get")]
         public IResult Delete(Donation donation)
         {
@@ -51,7 +51,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Donation>(_donationDal.Get(b => b.DonationId == id));
         }
 
-        [SecuredOperation("donation.update,admin")]
+        [SecuredOperation("donation.update,admin,user")]
         [CacheRemoveAspect("IDonationService.Get")]
         public IResult Update(Donation donation)
         {

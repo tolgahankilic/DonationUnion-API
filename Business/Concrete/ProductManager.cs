@@ -21,7 +21,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(ProductValidator))]
-        [SecuredOperation("product.add,admin")]
+        [SecuredOperation("product.add,admin,user")]
         [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Product product)
         {
@@ -29,7 +29,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ProductAdded);
         }
 
-        [SecuredOperation("product.delete,admin")]
+        [SecuredOperation("product.delete,admin,user")]
         [CacheRemoveAspect("IProductService.Get")]
         public IResult Delete(Product product)
         {
@@ -49,7 +49,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Product>(_productDal.Get(b => b.ProductId == id));
         }
 
-        [SecuredOperation("product.update,admin")]
+        [SecuredOperation("product.update,admin,user")]
         [CacheRemoveAspect("IProductService.Get")]
         public IResult Update(Product Product)
         {
