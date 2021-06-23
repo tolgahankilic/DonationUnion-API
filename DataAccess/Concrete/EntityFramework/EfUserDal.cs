@@ -23,5 +23,19 @@ namespace DataAccess.Concrete.EntityFramework
 
             }
         }
+
+        public void UserRoleAdd(User user)
+        {
+            using (var context = new DonationUnionDbContext())
+            {
+                var userRole = new UserOperationClaim
+                {
+                    OperationClaimId = 2,
+                    UserId = user.Id
+                };
+                context.UserOperationClaims.Add(userRole);
+                context.SaveChanges();
+            }
+        }
     }
 }
